@@ -4,7 +4,7 @@ module Slf4r
     protected
 
     def format(exception)
-      ": #{exception.message}:\n\t#{exception.backtrace.join('\n\t')}" if exception
+      ": #{exception.message}:\n\t#{exception.backtrace.join("\n\t")}" if exception
     end
     
     def _debug(msg)

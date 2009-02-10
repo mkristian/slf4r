@@ -2,12 +2,15 @@
 
 require 'rubygems'
 require 'hoe'
-require './lib/slf4r.rb'
+require './lib/slf4r/version.rb'
 
 Hoe.new('slf4r', Slf4r::VERSION) do |p|
-  # p.rubyforge_name = 'slf4rx' # if different than lowercase project name
-  p.developer('kristian', 'FIX@example.com')
+  p.rubyforge_name = 'slf4r' # if different than lowercase project name
+  p.summary = 'Slf4r provides a uniform interface for instantiating und using of a logger'
+  p.url = 'http://slf4r.rubyforge.com/'
+  p.developer('mkristian', 'm.kristian@web.de')
   p.changes = p.paragraphs_of('History.txt', 0..1).join("\n\n")
+  p.remote_rdoc_dir = '' # Release to root
 end
 
 desc 'Install the package as a gem.'
