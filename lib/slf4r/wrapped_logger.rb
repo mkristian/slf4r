@@ -1,4 +1,4 @@
-require 'abstract_logger_facade'
+require 'slf4r/abstract_logger_facade'
 module Slf4r
   class LoggerFacade4WrappedLogger
 

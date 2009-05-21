@@ -39,7 +39,6 @@ appender.layout = Logging::Layouts::Pattern.new(:pattern => "%d [%-l] (%c) %m\n"
 logger = Logging::Logger.new(:root)
 logger.add_appenders(appender)
 logger.level = :debug
-logger.info "initialized logger . . ."
 
 === using with ruby logger
 
@@ -51,9 +50,9 @@ require 'log4r_adapter'
 
 === using with rails/merb/datamapper logger
 
-require 'slf4r/wrappered_logger'
+require 'slf4r/wrapped_logger'
 
-LoggerFacade4WrappedLogger.logger(framwork_logger)
+Slf4r::LoggerFacade4WrappedLogger.logger = framwork_logger
 
 === getting an instance of a logger
 
