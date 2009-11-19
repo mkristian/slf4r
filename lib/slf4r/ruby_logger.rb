@@ -4,13 +4,13 @@ require 'slf4r/abstract_logger_facade'
 module Slf4r
   class LoggerFacade4RubyLogger
     
-    @@level = ::Logger::INFO
     @@file = STDERR
     @@datetime_format = "%Y-%m-%d %H:%M:%S "
 
     def self.new_logger_facade(name)
       @name = name
       @logger = ::Logger.new(@@file)
+      @@level = ::Logger::INFO unless self.class_variable_defined?(:@@level)
       @logger.level = @@level
       @logger.datetime_format = @@datetime_format
       @logger
@@ -18,7 +18,7 @@ module Slf4r
 
     def self.level=(level)
       @@level = level.instance_of?(Fixnum) ? level : 
-        ::Logger.get_const(level.to_s.upcase)
+        ::Logger.const_get(level.to_s.upcase)
     end
 
     def self.datetime_format=(format)
