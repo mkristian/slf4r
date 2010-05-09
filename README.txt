@@ -1,12 +1,8 @@
-= slf4r
-
-* FIX (url)
-
-== DESCRIPTION:
+= SLF4R
 
 the main idea is from www.slf4j.org which is to provide a uniform interface for instantiating und using of a logger. but the actual logging is done by some third party logging framework.
 
-one idea is to have a logger per class or object (see ). in ruby you would have something like
+one idea is to have a logger per class or object (see also http://slf4j.org/). in ruby you would have something like
 
    @logger = Slf4r::LoggerFacade.new(self.class)
 
@@ -14,17 +10,17 @@ or the convinience module
 
    include Slf4r::Logger
 
-if the underlying logging framework allows it (like logging or log4r) then you get a logger for each namespace of your class and create a hierachy of loggers. with this you can control the log level for each logger and/or namespace.
+if the underlying logging framework allows it (like logging or log4r) then you get a logger for each namespace of your class and create a hierachy of loggers. with this you can control the log level for each logger and/or namespace separately.
 
 for example you have a framework A with namespace 'A' then you can set the log level for the logger with name 'A' to debug and get all the debug from the framework, etc.
 
 in case you have a framework B which uses log4r internally you can use the 'log4r_adapter' to delegate the logger creation from log4r to slf4r. in this way you have only one place where logging gets configured and controlled.
 
-== FEATURES/PROBLEMS:
+== FEATURES:
 
 * can replace other logging frameworks via adapters
 
-* for the actual logging it depends on a third party logging framework
+* for the actual logging it depends on a third party logging framework and its configuration
 
 == SYNOPSIS:
 
@@ -54,15 +50,27 @@ require 'slf4r/wrapped_logger'
 
 Slf4r::LoggerFacade4WrappedLogger.logger = framwork_logger
 
+=== using with slf4j with jruby
+
+just get the needed jar files/ configuration files in the classpath
+(see http://slf4j.org/) or if you use maven then have a look and the
+pom.xml of that project.
+
 === getting an instance of a logger
 
 Slf4r::LoggerFacade.new("Full::Qualified::Class::Name")
+
+or
+
+Slf4r::LoggerFacade.new(Full::Qualified::Class::Name)
 
 == REQUIREMENTS:
 
 * logging for slf4r/logging_logger
 
 * log4r for slf4r/log4r_logger
+
+* slf4j jars in the classpath for slf4j
 
 == INSTALL:
 
@@ -76,7 +84,7 @@ Slf4r::LoggerFacade.new("Full::Qualified::Class::Name")
 
 (The MIT License)
 
-Copyright (c) 2009 kristian meier
+Copyright (c) 2010 kristian meier
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

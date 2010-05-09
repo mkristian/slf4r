@@ -1,2 +1,5 @@
 pkg
 tmp
+target
+*~
+lib/slf4r/version.rb.errors

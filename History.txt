@@ -1,6 +1,11 @@
+=== 0.3.0 / 2010-05-09
+
+* added pom.xml for maven build
+
+* added facade for slf4j which will be default when running jruby and having the respective libraries in place
+
 === 0.1.1 / 2008-12-19
 
 * fixed printoout of backtrace
 
 * added log methods for ruby_logger_adapter
-
