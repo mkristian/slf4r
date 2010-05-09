@@ -1,8 +1,6 @@
-require 'rubygems'
-require 'pathname'
-
-dir = Pathname(__FILE__).dirname.expand_path + 'slf4r'
-
-require dir + 'version'
-require dir + 'logger'
-require dir + 'ruby_logger'
+require 'slf4r/logger'
+begin
+  require 'slf4r/java_logger'
+rescue
+  require 'slf4r/ruby_logger'
+end
