@@ -12,7 +12,7 @@ require 'slf4r/log4r_logger'
 
 Log4r::Logger.root.level = Log4r::DEBUG
 
-out = Log4r::FileOutputter.new('logfile', 
+out = Log4r::FileOutputter.new('logfile',
                                :filename => (basedir + 'tmp' + 'log4r.txt').to_s,
                                :trunc=>false,
                                :level => Log4r::DEBUG)

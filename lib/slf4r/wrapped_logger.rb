@@ -39,7 +39,7 @@ module Slf4r
       @logger.error(msg)
     end
 
-    public 
+    public
 
     def debug?
       @logger.debug?

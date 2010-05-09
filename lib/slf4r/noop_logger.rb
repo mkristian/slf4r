@@ -5,10 +5,10 @@ module Slf4r
       @name = name
     end
 
-    public 
+    public
 
     attr_reader :name
-    
+
     def debug?
       false
     end

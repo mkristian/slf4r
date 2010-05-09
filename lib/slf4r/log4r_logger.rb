@@ -3,15 +3,15 @@ require 'slf4r/abstract_logger_facade'
 
 module Slf4r
   class LoggerFacade < AbstractLoggerFacade
-    
+
     attr_reader :logger
-    
+
     def initialize(name)
       super
       @logger = ::Log4r::Logger::Repository[name] || ::Log4r::Logger.new(name)
     end
 
-    public 
+    public
 
     def debug?
       @logger.level == 0
@@ -44,6 +44,6 @@ module Slf4r
     def _error(msg)
       @logger.error(msg)
     end
-    
+
   end
 end

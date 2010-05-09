@@ -6,7 +6,7 @@ module Slf4r
     def format(exception)
       (": #{exception.message}:\n\t#{exception.backtrace.join("\n\t") if exception.backtrace }") if exception
     end
-    
+
     def _debug(msg)
       raise NotImplementedError
     end
@@ -23,7 +23,7 @@ module Slf4r
       raise NotImplementedError
     end
 
-    public 
+    public
 
     attr_reader :name
 

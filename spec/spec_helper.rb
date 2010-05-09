@@ -1,5 +1,5 @@
 class File2String < String
-  
+
   def initialize(file)
     content = ''
     f = File.open(file, "r")
