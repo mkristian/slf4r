@@ -1,9 +1,9 @@
-require 'logger.rb'
+require 'logger'
 require 'slf4r/abstract_logger_facade'
 
 module Slf4r
   class LoggerFacade4RubyLogger
-    
+
     @@file = STDERR
     @@datetime_format = "%Y-%m-%d %H:%M:%S "
 
@@ -17,7 +17,7 @@ module Slf4r
     end
 
     def self.level=(level)
-      @@level = level.instance_of?(Fixnum) ? level : 
+      @@level = level.instance_of?(Fixnum) ? level :
         ::Logger.const_get(level.to_s.upcase)
     end
 
@@ -29,9 +29,9 @@ module Slf4r
       @@file = file
     end
   end
-   
+
   class LoggerFacade < AbstractLoggerFacade
-     
+
     def initialize(name)
       super
       @logger = LoggerFacade4RubyLogger.new_logger_facade(name)
@@ -43,38 +43,40 @@ module Slf4r
       @logger.add(type, msg, @name)
     end
 
-    public 
-
-    def debug?
-      @logger.debug?
-    end
+    protected
 
     def _debug(msg)
       log(::Logger::DEBUG, msg)
-    end
-
-    def info?
-      @logger.info?
     end
 
     def _info(msg)
       log(::Logger::INFO, msg)
     end
 
-    def warn?
-      @logger.warn?
-    end
-
     def _warn(msg)
       log(::Logger::WARN, msg)
     end
 
-    def error?
-      @logger.error?
-    end
-
     def _error(msg)
       log(::Logger::ERROR, msg)
+    end
+
+    public
+
+    def debug?
+      @logger.debug?
+    end
+
+    def info?
+      @logger.info?
+    end
+
+    def warn?
+      @logger.warn?
+    end
+
+    def error?
+      @logger.error?
     end
   end
 end
