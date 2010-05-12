@@ -23,6 +23,10 @@ module Slf4r
       raise NotImplementedError
     end
 
+    def _fatal(msg)
+      raise NotImplementedError
+    end
+
     public
 
     attr_reader :name
@@ -36,8 +40,10 @@ module Slf4r
     end
 
     def debug(msg = nil, exception = nil)
-      msg, exception = yield if block_given?
-      _debug("#{msg}#{format(exception)}")
+      if(debug?)
+        msg, exception = yield if block_given?
+        _debug("#{msg}#{format(exception)}")
+      end
     end
 
     def info?
@@ -45,8 +51,10 @@ module Slf4r
     end
 
     def info(msg = nil, exception = nil)
-      msg, exception = yield if block_given?
-      _info("#{msg}#{format(exception)}")
+      if(info?)
+        msg, exception = yield if block_given?
+        _info("#{msg}#{format(exception)}")
+      end
     end
 
     def warn?
@@ -54,8 +62,10 @@ module Slf4r
     end
 
     def warn(msg = nil, exception = nil)
-      msg, exception = yield if block_given?
-      _warn("#{msg}#{format(exception)}")
+      if(warn?)
+        msg, exception = yield if block_given?
+        _warn("#{msg}#{format(exception)}")
+      end
     end
 
     def error?
@@ -63,8 +73,21 @@ module Slf4r
     end
 
     def error(msg = nil, exception = nil)
-      msg, exception = yield if block_given?
-      _error("#{msg}#{format(exception)}")
+      if(error?)
+        msg, exception = yield if block_given?
+        _error("#{msg}#{format(exception)}")
+      end
+    end
+
+    def fatal?
+      raise NotImplementedError
+    end
+
+    def fatal(msg = nil, exception = nil)
+      if(fatal?)
+        msg, exception = yield if block_given?
+        _fatal("#{msg}#{format(exception)}")
+      end
     end
   end
 end

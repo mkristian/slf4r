@@ -61,6 +61,10 @@ module Slf4r
       log(::Logger::ERROR, msg)
     end
 
+    def _fatal(msg)
+      log(::Logger::FATAL, msg)
+    end
+
     public
 
     def debug?
@@ -77,6 +81,10 @@ module Slf4r
 
     def error?
       @logger.error?
+    end
+
+    def fatal?
+      @logger.fatal?
     end
   end
 end

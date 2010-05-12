@@ -14,7 +14,7 @@ module Slf4r
     public
 
     def debug?
-      @logger.level == 0
+      @logger.level == Log4r::DEBUG
     end
 
     def _debug(msg)
@@ -22,7 +22,7 @@ module Slf4r
     end
 
     def info?
-      @logger.level <= 1
+      @logger.level <= Log4r::INFO
     end
 
     def _info(msg)
@@ -30,7 +30,7 @@ module Slf4r
     end
 
     def warn?
-      @logger.level <= 2
+      @logger.level <= Log4r::WARN
     end
 
     def _warn(msg)
@@ -38,11 +38,19 @@ module Slf4r
     end
 
     def error?
-      @logger.level <= 3
+      @logger.level <= Log4r::ERROR
     end
 
     def _error(msg)
       @logger.error(msg)
+    end
+
+    def fatal?
+      @logger.level <= Log4r::FATAL
+    end
+
+    def _fatal(msg)
+      @logger.fatal(msg)
     end
 
   end

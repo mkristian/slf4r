@@ -19,7 +19,7 @@ module Slf4r
       @logger = org.slf4j.LoggerFactory.getLogger(name.to_s.sub(/^::/, '').gsub(/::/, '.'))
     end
 
-    [:debug, :info, :warn, :error].each do |level|
+    [:debug, :info, :warn, :error, :fatal].each do |level|
       class_eval <<-CODE
     def #{level}?
       @logger.is_#{level}_enabled

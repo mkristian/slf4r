@@ -36,5 +36,12 @@ module Slf4r
 
     def error(msg = nil, exception = nil)
     end
+
+    def fatal?
+      false
+    end
+
+    def fatal(msg = nil, exception = nil)
+    end
   end
 end

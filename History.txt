@@ -1,3 +1,9 @@
+=== 0.3.1 / 2010-05-12
+
+* added fatal methods since they are just missing
+
+* check before triggering the log event, i.e. have string operations only when logging takes place
+
 === 0.3.0 / 2010-05-09
 
 * added pom.xml for maven build

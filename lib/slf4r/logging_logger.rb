@@ -43,6 +43,10 @@ module Slf4r
       log(3, msg)
     end
 
+    def _fatal(msg)
+      log(4, msg)
+    end
+
     public
 
     def debug?
@@ -59,6 +63,10 @@ module Slf4r
 
     def error?
       @logger.level <= 3
+    end
+
+    def fatal?
+      @logger.level <= 4
     end
   end
 end
