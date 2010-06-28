@@ -14,7 +14,6 @@ lib/slf4r/noop_logger.rb
 lib/slf4r/ruby_logger.rb
 lib/slf4r/version.rb
 lib/slf4r/wrapped_logger.rb
-load.rb
 spec/log4r_logger_spec.rb
 spec/logger_helper.rb
 spec/logging_logger_spec.rb

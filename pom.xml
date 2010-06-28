@@ -5,23 +5,15 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>rubygems</groupId>
   <artifactId>slf4r</artifactId>
-  <version>0.3.2-SNAPSHOT</version>
+  <version>0.3.2</version>
   <packaging>gem</packaging>
   <name>Slf4r</name>
   <description>Slf4r provides a uniform interface for instantiating und using of a logger</description>
 
   <repositories>
     <repository>
-      <id>rubygems</id>
-      <releases>
-	<updatePolicy>never</updatePolicy>
-	<checksumPolicy>ignore</checksumPolicy>
-      </releases>
-      <snapshots>
-	<enabled>false</enabled>
-      </snapshots>
-      <url>http://rubygems.org/gems</url>
-      <layout>gem</layout>
+      <id>rubygems-releases</id>
+      <url>http://gems.saumya.de/releases</url>
     </repository>
   </repositories>
 
@@ -33,8 +25,8 @@
   </scm>
   <licenses>
     <license>
-      <name>MIT</name>
-      <url>http://www.opensource.org/licenses/mit-license.php</url>
+      <name>MIT-LICENSE</name>
+      <url>./MIT-LICENSE</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
@@ -125,6 +117,6 @@
   </build>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jruby.plugins.version>0.12.0-SNAPSHOT</jruby.plugins.version>
+    <jruby.plugins.version>0.20.0-SNAPSHOT</jruby.plugins.version>
   </properties>
 </project>

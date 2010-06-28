@@ -1,3 +1,7 @@
+=== 0.3.2 / 2010-06-20
+
+* fixed non java case to fall back to rubylogger
+
 === 0.3.1 / 2010-05-12
 
 * added fatal methods since they are just missing
