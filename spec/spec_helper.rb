@@ -12,6 +12,8 @@ class File2String < String
 
 end
 
+require 'rubygems'
+
 $LOAD_PATH << Pathname(__FILE__).dirname.parent.expand_path + 'lib'
 require 'slf4r'
 
