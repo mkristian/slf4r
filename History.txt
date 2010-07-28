@@ -1,3 +1,9 @@
+=== 0.3.3 / 2010-07-29
+
+* reworked Rakefile, pom.xml
+
+* better decision which default logger to use
+
 === 0.3.2 / 2010-06-20
 
 * fixed non java case to fall back to rubylogger
