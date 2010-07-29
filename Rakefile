@@ -1,17 +1,15 @@
 # -*- ruby -*-
 
 require 'rubygems'
-require './lib/slf4r/version.rb'
 
 require 'spec'
 require 'spec/rake/spectask'
-require 'pathname'
 
-build_dir = 'target'
+BUILD_DIR = 'target'
 
 desc 'clean up'
 task :clean do
-  FileUtils.rm_rf(build_dir)
+  FileUtils.rm_rf(BUILD_DIR)
   FileUtils.rm_rf('tmp')
 end
 
@@ -20,15 +18,15 @@ task :package do
   require 'fileutils'
   gemspec = Dir['*.gemspec'].first
   Kernel.system("#{RUBY} -S gem build #{gemspec}")
-  FileUtils.mkdir_p(build_dir)
+  FileUtils.mkdir_p(BUILD_DIR)
   gem = Dir['*.gem'].first
-  FileUtils.mv(gem, File.join(build_dir,"#{gem}"))
-  puts File.join(build_dir,"#{gem}")
+  FileUtils.mv(gem, File.join(BUILD_DIR,"#{gem}"))
+  puts File.join(BUILD_DIR,"#{gem}")
 end
 
 desc 'Install the package as a gem.'
 task :install => [:package] do
-  gem = Dir[File.join(build_dir, '*.gem')].first
+  gem = Dir[File.join(BUILD_DIR, '*.gem')].first
   extra = ENV['GEM_HOME'].nil? && ENV['GEM_PATH'].nil? ? "--user-install" : ""
   Kernel.system("#{RUBY} -S gem install --local #{gem} --no-ri --no-rdoc #{extra}")
 end
@@ -38,7 +36,7 @@ Spec::Rake::SpecTask.new(:spec) do |t|
   if File.exists?('spec/spec.opts')
     t.spec_opts << '--options' << 'spec/spec.opts'
   end
-  t.spec_files = Pathname.glob('./spec/**/*_spec.rb')
+  t.spec_files = Dir.glob('./spec/**/*_spec.rb')
 end
 
 # vim: syntax=Ruby
