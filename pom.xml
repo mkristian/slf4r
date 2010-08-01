@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>rubygems</groupId>
   <artifactId>slf4r</artifactId>
-  <version>0.3.3-SNAPSHOT</version>
+  <version>0.3.4-SNAPSHOT</version>
   <packaging>gem</packaging>
   <name>Slf4r</name>
   <description>Slf4r provides a uniform interface for instantiating und using of a logger</description>
