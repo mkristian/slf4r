@@ -4,7 +4,7 @@ require 'slf4r/abstract_logger_facade'
 module Slf4r
   class LoggerFacade4RubyLogger
 
-    @@file = STDERR
+    @@file = STDOUT
     @@datetime_format = "%Y-%m-%d %H:%M:%S "
 
     def self.new_logger_facade(name)

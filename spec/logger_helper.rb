@@ -1,7 +1,9 @@
 require 'pathname'
 require Pathname(__FILE__).dirname.expand_path + 'spec_helper'
-def Slf4r.flush(klass)
-  remove_const(klass.to_sym) if const_defined? klass.to_sym
+module Slf4r
+  def flush(klass)
+    remove_const(klass.to_sym) if const_defined? klass.to_sym
+  end
 end
 
 def behave_as_logger(logger)

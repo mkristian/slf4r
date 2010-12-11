@@ -1,7 +1,7 @@
 # create by maven - leave it as is
 Gem::Specification.new do |s|
   s.name = 'slf4r'
-  s.version = '0.3.3'
+  s.version = '0.4.0'
 
   s.summary = 'Slf4r'
   s.description = 'Slf4r provides a uniform interface for instantiating und using of a logger'

@@ -1,5 +1,6 @@
 require 'pathname'
 require 'fileutils'
+require 'logger'
 require Pathname(__FILE__).dirname.expand_path + 'logger_helper'
 
 basedir = Pathname(__FILE__).dirname.parent.expand_path

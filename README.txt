@@ -1,26 +1,20 @@
 = SLF4R
 
-the main idea is from www.slf4j.org which is to provide a uniform interface for instantiating und using of a logger. but the actual logging is done by some third party logging framework.
+the main idea is from www.slf4j.org which is to provide an uniform interface for instantiating und using of a logger. but the actual logging is done by some third party logging framework.
 
-one idea is to have a logger per class or object (see also http://slf4j.org/). in ruby you would have something like
+the idea is to have a logger per class or object (see also http://slf4j.org/). in ruby you would have something like
 
    @logger = Slf4r::LoggerFacade.new(self.class)
 
-or the convinience module
+or the convinience module inside any class which needs logging
 
    include Slf4r::Logger
 
-if the underlying logging framework allows it (like logging or log4r) then you get a logger for each namespace of your class and create a hierachy of loggers. with this you can control the log level for each logger and/or namespace separately.
+if the underlying logging framework allows it (like logging or log4r) then you get a logger for each namespace of your class and create a hierachy of loggers. with this you can control the log level for each logger and/or namespace separately or any branch of the hierachy tree.
 
 for example you have a framework A with namespace 'A' then you can set the log level for the logger with name 'A' to debug and get all the debug from the framework, etc.
 
 in case you have a framework B which uses log4r internally you can use the 'log4r_adapter' to delegate the logger creation from log4r to slf4r. in this way you have only one place where logging gets configured and controlled.
-
-== FEATURES:
-
-* can replace other logging frameworks via adapters
-
-* for the actual logging it depends on a third party logging framework and its configuration
 
 == SYNOPSIS:
 
@@ -28,21 +22,18 @@ in case you have a framework B which uses log4r internally you can use the 'log4
 
 require 'slf4r/logging_logger'
 
-Logging.init :debug, :info, :warn, :error
+Logging.logger.root.appenders = Logging.appenders.file("developent.log"),
+    :level => :debug,
+    :layout => Logging.layouts.pattern(:pattern => '%d %l (%c) - %m\n')
+)
 
-appender = Logging::Appender.stdout
-appender.layout = Logging::Layouts::Pattern.new(:pattern => "%d [%-l] (%c) %m\n")
-logger = Logging::Logger.new(:root)
-logger.add_appenders(appender)
-logger.level = :debug
-
-=== using with ruby logger
+=== using with ruby logger (from MRI)
 
 require 'slf4r/ruby_logger'
 
-=== using the log4r adapter
-
-require 'log4r_adapter'
+Slf4r::LoggerFacade4RubyLogger.level = :warn # default :debug
+Slf4r::LoggerFacade4RubyLogger.file = "development.log" # default STDOUT
+Slf4r::LoggerFacade4RubyLogger.dateformat = "%Y%m%d %H:%M:%S - " # default "%Y-%m-%d %H:%M:%S "
 
 === using with rails/merb/datamapper logger
 
@@ -52,33 +43,79 @@ Slf4r::LoggerFacade4WrappedLogger.logger = framwork_logger
 
 === using with slf4j with jruby
 
+require 'slf4r/init_slf4j'
+
 just get the needed jar files/ configuration files in the classpath
-(see http://slf4j.org/) or if you use maven then have a look and the
-pom.xml of that project.
+(see http://slf4j.org/) or if you use maven then have a look at the
+pom.xml of this very project.
+
+this require falls back on the standard ruby logger if there is no slf4j in the classpath.
+
+=== usign a noop logger
+
+require 'slf4r/noop_logger'
 
 === getting an instance of a logger
 
-Slf4r::LoggerFacade.new("Full::Qualified::Class::Name")
-
+* logger = Slf4r::LoggerFacade.new("Fully::Qualified::Class::Name")
 or
+* logger = Slf4r::LoggerFacade.new("any name you wish")
+or
+* logger = Slf4r::LoggerFacade.new(Fully::Qualified::Class::Name)
 
-Slf4r::LoggerFacade.new(Full::Qualified::Class::Name)
+there are following log-levels:
+* logger.debug("asd") or logger.debug { "asd" } and logger.debug?
+* logger.info("asd") or logger.info { "asd" } and logger.warn?
+* logger.warn("asd") or logger.warn { "asd" } and logger.info?
+* logger.error("asd") or logger.error { "asd" } and logger.error?
+* logger.fatal("asd") or logger.fatal { "asd" } and logger.fatal?
 
-== REQUIREMENTS:
+the block variant will evaluate the block only if the log level indicates logging to avoid needless string operations.
 
-* logging for slf4r/logging_logger
-
-* log4r for slf4r/log4r_logger
-
-* slf4j jars in the classpath for slf4j
+* logger.name
+will return the log category or name
 
 == INSTALL:
 
-* sudo gem install slf4r
+=== general 
 
-* sudo gem install logging # optional
+$ gem install slf4r
 
-* sudo gem install log4r # optional
+=== Rails3
+
+=== use the Rails.logger as slf4r logger
+
+add in your Gemfile
+
+  gem 'slf4r'
+
+=== rails generators
+
+setup a log4j logging (fallback on rails logging without JRUBY)
+
+$ rails3 generate slf4r:log4j
+
+but to use this you need to add slf4j-log4j12-1.6.1.jar to you classpath or require the jar
+
+setup a logging from logging gem
+
+$ rails3 generate slf4r:logging
+
+all these setups use the same files as default rails and adjust the log level from the rails config. they establish the folowing categories:
+* Rails
+* <NAME>.Application # where the name is your application name
+* ActionController
+* ActiveRecord
+* ActionView
+* ActionMailer
+* ActiveSupport::Cache::Store
+
+== TODO:
+
+* the bridge from ruby to java, i.e. using rails logging for java libraries using slf4j, i.e. the java classes will log into the rails logging framework
+* follow the naming of slf4j
+* for the completeness: generators for jdk14, java-commons-logging, logback, log4r
+* generators for slf4j should take advantage of ruby-maven and configure the jar in Gemfile as dependency
 
 == LICENSE:
 
