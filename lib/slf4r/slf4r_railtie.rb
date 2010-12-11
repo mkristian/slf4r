@@ -24,7 +24,7 @@ class Slf4rRailtie < Rails::Railtie
    else
       require 'slf4r/wrapped_logger'
       logger = (Slf4r::LoggerFacade4WrappedLogger.logger = Rails.logger)
-      logger.info("setup slf4r logger wrapper with #{logger.inspect}")
+      logger.info("setup slf4r logger wrapper with #{logger.class}")
     end
   end
 

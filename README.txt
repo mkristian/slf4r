@@ -95,7 +95,7 @@ setup a log4j logging (fallback on rails logging without JRUBY)
 
 $ rails3 generate slf4r:log4j
 
-but to use this you need to add slf4j-log4j12-1.6.1.jar to you classpath or require the jar
+but to use this you need to add slf4j-log4j12-1.6.1.jar to you classpath or require the jar. see below how to do this with ruby-maven gem.
 
 setup a logging from logging gem
 
@@ -109,6 +109,25 @@ all these setups use the same files as default rails and adjust the log level fr
 * ActionView
 * ActionMailer
 * ActiveSupport::Cache::Store
+
+== use ruby-maven to add jar files to your rails3 application (experimental)
+
+install it with
+$ jruby -S gem install ruby-maven --pre
+
+then you can run the rails3 with log4j wioth
+$ rmvn rails server
+or the generator
+$ rmv rails generate . .
+or the rake
+$ rmvn rake . . .
+or console/dbconsole
+$ rmvn rails console
+$ rmvn rails dbconsole
+or run the server in jetty
+$ jetty-run
+
+*NOTE* it is a prerelease so there are bugs and limitations
 
 == TODO:
 

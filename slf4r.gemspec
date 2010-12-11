@@ -20,7 +20,9 @@ Gem::Specification.new do |s|
   s.files += Dir['lib/**/*']
   s.files += Dir['spec/**/*']
   s.test_files += Dir['spec/**/*_spec.rb']
-  s.add_development_dependency 'rspec', '1.3.0'
+  s.add_development_dependency 'rspec', '1.3.1'
   s.add_development_dependency 'logging', '1.4.1'
   s.add_development_dependency 'log4r', '1.1.7'
+  s.add_development_dependency 'cucumber', '0.9.4'
+  s.add_development_dependency 'rails', '3.0.1'
 end

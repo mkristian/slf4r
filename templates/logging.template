@@ -1,0 +1,13 @@
+#-*- mode: ruby -*-
+apply File.join(File.dirname(__FILE__), 'slf4r.template')
+
+require File.join(File.dirname(__FILE__), 'helper.rb')
+
+gem 'logging'
+
+run_mvn 'pom'
+run_mvn 'generate', '-Dargs=slf4r:logging'
+run_mvn 'pom'
+run_mvn 'generate'
+
+# vim: syntax=Ruby
