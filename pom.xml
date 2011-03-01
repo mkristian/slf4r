@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>rubygems</groupId>
   <artifactId>slf4r</artifactId>
-  <version>0.4.0</version>
+  <version>0.4.2-SNAPSHOT</version>
   <packaging>gem</packaging>
   <name>Slf4r</name>
   <description>Slf4r provides a uniform interface for instantiating und using of a logger</description>
@@ -91,8 +91,8 @@
 	<version>${jruby.plugins.version}</version>
 	<extensions>true</extensions>
 	<configuration>
-	  <rdocOptions>--main, README.txt</rdocOptions>
-	  <extraRdocFiles>History.txt, README.txt</extraRdocFiles>
+	  <rdocOptions>--main, README.rdoc</rdocOptions>
+	  <extraRdocFiles>History.txt, README.rdoc</extraRdocFiles>
 	  <extraFiles>Rakefile</extraFiles>
 	  <gemspecOverwrite>true</gemspecOverwrite>
 	</configuration>
@@ -139,6 +139,6 @@
   </build>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jruby.plugins.version>0.23.0-SNAPSHOT</jruby.plugins.version>
+    <jruby.plugins.version>0.24.0</jruby.plugins.version>
   </properties>
 </project>

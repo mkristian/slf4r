@@ -1,7 +1,7 @@
 # create by maven - leave it as is
 Gem::Specification.new do |s|
   s.name = 'slf4r'
-  s.version = '0.4.0'
+  s.version = '0.4.1'
 
   s.summary = 'Slf4r'
   s.description = 'Slf4r provides a uniform interface for instantiating und using of a logger'
@@ -13,10 +13,10 @@ Gem::Specification.new do |s|
   s.files = Dir['MIT-LICENSE']
   s.licenses << 'MIT-LICENSE'
   s.files += Dir['History.txt']
-  s.files += Dir['README.txt']
-  s.extra_rdoc_files = ['History.txt','README.txt']
+  s.files += Dir['README.rdoc']
+  s.extra_rdoc_files = ['History.txt','README.rdoc']
   s.files += Dir['Rakefile']
-  s.rdoc_options = ['--main','README.txt']
+  s.rdoc_options = ['--main','README.rdoc']
   s.files += Dir['lib/**/*']
   s.files += Dir['spec/**/*']
   s.test_files += Dir['spec/**/*_spec.rb']

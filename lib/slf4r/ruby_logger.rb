@@ -10,7 +10,7 @@ module Slf4r
     def self.new_logger_facade(name)
       @name = name
       @logger = ::Logger.new(@@file)
-      @@level = ::Logger::INFO unless self.class_variable_defined?(:@@level)
+      @@level = ::Logger::DEBUG unless self.class_variable_defined?(:@@level)
       @logger.level = @@level
       @logger.datetime_format = @@datetime_format
       @logger
@@ -40,7 +40,7 @@ module Slf4r
     private
 
     def log(type, msg)
-      @logger.add(type, msg, @name)
+      @logger.add(type, "(#{@name}) " + msg, @name)
     end
 
     protected

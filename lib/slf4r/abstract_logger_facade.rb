@@ -1,3 +1,4 @@
+require 'slf4r'
 module Slf4r
   class AbstractLoggerFacade
 
