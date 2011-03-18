@@ -1,7 +1,7 @@
 # create by maven - leave it as is
 Gem::Specification.new do |s|
   s.name = 'slf4r'
-  s.version = '0.4.1'
+  s.version = '0.4.2'
 
   s.summary = 'Slf4r'
   s.description = 'Slf4r provides a uniform interface for instantiating und using of a logger'
@@ -25,4 +25,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'log4r', '1.1.7'
   s.add_development_dependency 'cucumber', '0.9.4'
   s.add_development_dependency 'rails', '3.0.1'
+  s.add_development_dependency 'ruby-maven', '0.8.3.0.2'
 end
