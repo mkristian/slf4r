@@ -5,15 +5,14 @@ class Slf4r::Log4jGenerator < Rails::Generators::Base
     source = File.expand_path('../../templates', __FILE__)
     initializer "log4j.rb", File.read(File.join(source, "log4j.rb"))
     initializer "log4j.properties", File.read(File.join(source, "log4j.properties"))
+    gem 'slf4r', :require => 'slf4r/java_logger'
 
-    gemfile = File.read('Gemfile')
+    file_name = 'Mavenfile'
     jar_line = "org.slf4j.slf4j-log4j12"
-    unless gemfile =~ /#{jar_line}/
-      File.open('Gemfile', 'a') do |f|
-        f.puts
-        f.puts "if defined? MAVEN"
-        f.puts "  jar '#{jar_line}', '1.6.1'"
-        f.puts "end"
+    mavenfile = File.exists?(file_name) ? File.read(file_name) : ''
+    unless mavenfile =~ /#{jar_line}/
+      File.open(file_name, 'a') do |f|
+        f.puts "jar '#{jar_line}', '1.6.1'"
       end
     end
   end

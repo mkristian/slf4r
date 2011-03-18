@@ -2,8 +2,13 @@ class Slf4rRailtie < Rails::Railtie
 
   initializer "set_servlet_logger", :after => :initialize_logger do |app|
     if defined?(Slf4r::LoggerFacade)
-      @logger = (Rails.logger = setup_logger(Rails))
-      app.config.logger = @logger
+      @logger = Slf4r::LoggerFacade.new("Rails::Setup")
+      @logger.info {
+        l = @logger.instance_variable_get('@logger'.to_sym)
+        logger_name = l.respond_to?(:java_class) ? l.java_class : l.class
+        "setup slf4r logger #{logger_name}"
+      }
+      app.config.logger = Rails.logger = setup_logger(Rails)
       app.config.action_controller.logger = setup_logger(ActionController)
       app.config.active_record.logger = setup_logger(ActiveRecord)
       app.config.action_view.logger = setup_logger(ActionView) if app.config.action_view.respond_to? :logger=
@@ -16,15 +21,15 @@ class Slf4rRailtie < Rails::Railtie
               end
     else
       require 'slf4r/wrapped_logger'
-      Slf4r::LoggerFacade4WrappedLogger.logger = Rails.logger
-      puts "setup slf4r logger wrapper"
+      l = Slf4r::LoggerFacade4WrappedLogger.logger = Rails.logger
+      l.info "setup slf4r logger wrapper"
     end
   end
 
   private
   def self.setup_logger(category)
     l = Slf4r::LoggerFacade.new((category == Rails ? "" : "Rails::") + category.to_s)
-    (@logger || l).info("setup logger for '#{l.name}")
+    @logger.info("setup logger for '#{l.name}'") if @logger
     l
   end
 end
