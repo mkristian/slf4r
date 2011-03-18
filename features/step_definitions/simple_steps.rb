@@ -2,7 +2,7 @@ require 'fileutils'
 Given /^I create new rails application with template "(.*)"$/ do |template|
   name = template.sub(/.template$/, '')
   directory = File.join('target', name)
-  rails_version = ENV['RAILS_VERSION'] || '3.0.1'
+  rails_version = '3.0.1'
 
   ruby = defined?(JRUBY_VERSION) ? "jruby" : "ruby"
   rails_command = "#{ENV['GEM_HOME']}/bin/rails"

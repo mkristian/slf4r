@@ -1,4 +1,7 @@
 #-*- mode: ruby -*-
+
+# this is tailered to rails 3.0.1 (and maybe others)
+
 db_gem_line = "gem '#{gem_for_database}'"
 db_gem_line << ", :require => '#{require_for_database}'" if require_for_database
 db_gem_regexp = Regexp::quote(db_gem_line).gsub("'", "['\"]")

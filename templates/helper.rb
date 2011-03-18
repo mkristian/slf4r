@@ -23,7 +23,8 @@ def run_generate(*args)
 end
 
 def run_mvn(goal, *args)
-  run "mvn de.saumya.mojo:rails3-maven-plugin:0.23.0-SNAPSHOT:#{goal} #{args.join(' ')} -Dgem.home=#{ENV['GEM_HOME']} -Dgem.path=#{ENV['GEM_PATH']} >> error.txt"
+  separator = args.member?('--') ? ' ' : ' -- '
+  run "rmvn rails #{goal} #{args.join(' ')}#{separator}-Dgem.home=#{ENV['GEM_HOME']} -Dgem.path=#{ENV['GEM_PATH']} >> error.txt"
 end
 
 def bundle_install

@@ -4,8 +4,8 @@ apply File.join(File.dirname(__FILE__), 'slf4r.template')
 require File.join(File.dirname(__FILE__), 'helper.rb')
 
 run_mvn 'pom'
-run_mvn 'generate', '-Dargs=slf4r:log4j'
-run_mvn 'pom', '-Drails.pom.force'
+run_mvn 'generate', 'slf4r:log4j'
+run_mvn 'pom', '--', '-Dpom.force'
 run_mvn 'generate'
 
 # vim: syntax=Ruby
